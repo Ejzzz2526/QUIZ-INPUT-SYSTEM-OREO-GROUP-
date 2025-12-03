@@ -126,7 +126,10 @@ files are located:
 
 ## 7. Author and Acknowledgement
 
-**Author:** Nino Cabrera\
+**Members:** 
+Nino Alyssandro L. Cabrera
+Adrian Renz G. Marques
+Emanuel Jacob B. Morales
 **Acknowledgement:** Special thanks to our instructor for guiding us
 through OOP concepts and implementation.
 
