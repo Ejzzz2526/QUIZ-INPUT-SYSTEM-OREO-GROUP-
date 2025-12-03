@@ -1,57 +1,147 @@
-# Quiz Management System (Java OOP Project)
+# Quiz Management System
 
 ## 1. Project Title
-**Quiz Management System**
 
----
+**Quiz Management System (Java OOP Console App)**
 
 ## 2. Description / Overview
-This project is a simple console-based Quiz Management System written in Java. It allows the user to create a quiz, add different types of questions (Multiple Choice, True/False, and Short Answer), delete questions, view the quiz, and take the quiz. The goal of the project is to apply Object-Oriented Programming concepts while building a functional tool that can be used for practice quizzes or small exercises.
 
----
+The **Quiz Management System** is a Java console-based application that
+allows users to create, manage, and take quizzes. It supports multiple
+question types (Multiple Choice, True/False, and Short Answer) and
+awards points for correct answers. The program demonstrates
+Object-Oriented Programming principles and provides an interactive menu
+for creating quizzes, adding/removing questions, viewing quiz content,
+and taking the full quiz.
 
 ## 3. OOP Concepts Applied
 
 ### a. Abstraction
-The project uses an abstract class `QuizItem` which represents a general quiz question. It contains the common attributes and abstract methods that all question types must implement.
+
+-   The `QuizItem` abstract class defines a general structure for all
+    quiz questions.
+-   Subclasses (**MultipleChoiceQuestion**, **TrueFalseQuestion**,
+    **ShortAnswerQuestion**) provide concrete implementations.
 
 ### b. Inheritance
-`MultipleChoiceQuestion`, `TrueFalseQuestion`, and `ShortAnswerQuestion` all inherit from the `QuizItem` abstract class. Each subclass provides its own version of displaying and checking answers.
 
-### c. Polymorphism
-The `Quiz` and `QuizManager` classes work with the parent type `QuizItem`, allowing different question types to be handled through the same interface. Methods such as `displayQuestion()` and `checkAnswer()` behave differently depending on the actual object.
+-   All question types inherit from the abstract `QuizItem`.
+-   Common properties (question text, points) and methods
+    (getters/setters) are reused.
 
-### d. Encapsulation
-Attributes across classes are private, and getters/setters are used when needed. Inputs are handled safely (e.g., `safeIntInput`, `safeCharInput`) to avoid invalid data.
+### c. Polymorphism
+
+-   `displayQuestion()`, `checkAnswer()`, and `getCorrectAnswer()` are
+    overridden in each subclass.
+-   The program treats all question types as `QuizItem` objects during
+    quiz operations.
+
+### d. Encapsulation
+
+-   Private attributes (`questionText`, `points`, `choices`, etc.)
+    protect data.
+-   Access is controlled through public getters, setters, and
+    constructors.
 
 ### e. Interface Implementation
-The `Scorable` interface defines scoring-related behavior. The `Quiz` class implements this interface to calculate total points and possible points.
 
----
+-   The `Scorable` interface defines scoring requirements.
+-   `Quiz` implements `Scorable` to calculate earned and total points.
 
 ## 4. Program Structure
 
-### Main Classes
-- **QuizItem (abstract class)**  
-  Base class for all question types.
+### Main Classes and Their Roles
 
-- **MultipleChoiceQuestion**  
-  Subclass for 4-option multiple-choice questions.
+  ---------------------------------------------------------------------------
+  Class                        Description
+  ---------------------------- ----------------------------------------------
+  **QuizItem (abstract)**      Base class for all question types. Defines
+                               shared fields and abstract methods.
 
-- **TrueFalseQuestion**  
-  Handles True/False type questions.
+  **MultipleChoiceQuestion**   Represents a question with 4 choices (a--d).
 
-- **ShortAnswerQuestion**  
-  Accepts exact match and alternative textual answers.
+  **TrueFalseQuestion**        Represents a question with True/False choices.
 
-- **Quiz**  
-  Holds the quiz title, questions, and scoring.
+  **ShortAnswerQuestion**      Accepts one or many correct acceptable
+                               answers.
 
-- **QuizManager**  
-  Handles the menu system, user input, and overall program flow.
+  **Quiz**                     Stores quiz title, list of questions, scoring
+                               functions, and question management.
 
-- **QuizSystem (main class)**  
-  Contains the method that starts the program.
+  **QuizManager**              Handles user input, menu navigation, quiz
+                               creation, and quiz-taking workflow.
 
-### Simple Text-Based Diagram
+  **QuizSystem (main)**        Runs the program using `QuizManager.run()`.
+  ---------------------------------------------------------------------------
 
+### Text-Based Diagram
+
+                   QuizItem (abstract)
+              /              |              \
+    MultipleChoice      TrueFalse        ShortAnswer
+           \                 |                /
+                        Quiz  <--- implements Scorable
+                           |
+                     QuizManager
+                           |
+                      QuizSystem (main)
+
+## 5. How to Run the Program
+
+### A. Compile
+
+Open terminal or command prompt inside the folder where the `.java`
+files are located:
+
+    javac QuizSystem.java
+
+### B. Run
+
+    java QuizSystem
+
+## 6. Sample Output
+
+### Example (Taking a Quiz)
+
+    Question 1:
+    What is the capital of France?
+    a: Paris
+    b: Rome
+    c: Berlin
+    d: Madrid
+    Your answer (a/b/c/d): a
+    Correct! +5 points
+
+### Example (Main Menu)
+
+    === QUIZ MANAGEMENT SYSTEM ===
+    1. Create New Quiz
+    2. Add Questions
+    3. Delete Question
+    4. View Quiz
+    5. Take Quiz
+    6. Clear Quiz
+    0. Exit
+    Choose option:
+
+## 7. Author and Acknowledgement
+
+**Author:** Nino Cabrera\
+**Acknowledgement:** Special thanks to our instructor for guiding us
+through OOP concepts and implementation.
+
+## 8. Other Sections
+
+### a. Future Enhancements
+
+-   Save and load quizzes from a file\
+-   Randomize question order\
+-   Timer functionality\
+-   GUI version using JavaFX\
+-   Export results to text/CSV
+
+### b. References
+
+-   Oracle Java Documentation\
+-   OOP course materials\
+-   StackOverflow
